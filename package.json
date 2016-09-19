@@ -16,8 +16,9 @@
     "prebuild": "npm run clean",
     "build": "babel lib --presets babel-preset-es2015 --out-dir dist",
     "build:watch": "babel lib --presets babel-preset-es2015 --out-dir dist --watch",
+    "postbuild": "npm run browserify",
     "prebrowserify": "rm -rf ./build/*",
-    "browserify": "browserify --full-paths dist/browser.js --standalone steemJS -o build/graphenejs-lib.js -d",
+    "browserify": "browserify dist/browser.js --standalone grapheneJS -o build/graphenejs-lib.js -d",
     "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/graphenejs-lib.min.js -- build/graphenejs-lib.js",
     "prepublish": "npm run build",
     "doc": "esdoc -c esdoc.json"
@@ -50,7 +51,7 @@
     "deep-equal": "^1.0.1",
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
-    "graphenejs-ws": "git+https://github.com/AlexChien/graphenejs-ws.git", 
+    "graphenejs-ws": "git+https://github.com/AlexChien/graphenejs-ws.git",
     "immutable": "^3.7.6",
     "secure-random": "^1.1.1"
   },
