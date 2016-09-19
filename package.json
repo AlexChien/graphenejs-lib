@@ -50,7 +50,7 @@
     "deep-equal": "^1.0.1",
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
-    "graphenejs-ws": "^0.1.5",
+    "graphenejs-ws": "git+https://github.com/AlexChien/graphenejs-ws.git", 
     "immutable": "^3.7.6",
     "secure-random": "^1.1.1"
   },
