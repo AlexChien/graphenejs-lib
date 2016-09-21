@@ -23,8 +23,8 @@ ChainTypes.object_type = {
   operation_history: 11,
   withdraw_permission: 12,
   vesting_balance: 13,
-  worker: 14,
-  balance: 15
+  // worker: 14,
+  balance: 14
 };
 
 ChainTypes.impl_object_type = {
