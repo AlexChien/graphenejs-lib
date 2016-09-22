@@ -85,16 +85,30 @@ ChainTypes.operations = {
   committee_member_update_global_parameters: 31,
   vesting_balance_create: 32,
   vesting_balance_withdraw: 33,
-  worker_create: 34,
-  custom: 35,
-  assert: 36,
-  balance_claim: 37,
-  override_transfer: 38,
-  transfer_to_blind: 39,
-  blind_transfer: 40,
-  transfer_from_blind: 41,
-  asset_settle_cancel: 42,
-  asset_claim_fees: 43
+  // worker_create: 34, #remove
+  // custom: 35,
+  // assert: 36,
+  // balance_claim: 37,
+  // override_transfer: 38,
+  // transfer_to_blind: 39,
+  // blind_transfer: 40,
+  // transfer_from_blind: 41,
+  // asset_settle_cancel: 42,
+  // asset_claim_fees: 43 #remove
+
+  // renumber the rest
+  custom: 34,
+  assert: 35,
+  balance_claim: 36,
+  override_transfer: 37,
+  transfer_to_blind: 38,
+  blind_transfer: 39,
+  transfer_from_blind: 40,
+  asset_settle_cancel: 41,
+  // asset_claim_fees: 42,
+
+  // add fba
+  fba_distribute: 42
 };
 
 module.exports = ChainTypes;
