@@ -164,7 +164,7 @@ var asset_claim_fees_operation_fee_parameters = new Serializer("asset_claim_fees
 
 var fee_parameters = static_variant([transfer_operation_fee_parameters, limit_order_create_operation_fee_parameters, limit_order_cancel_operation_fee_parameters, call_order_update_operation_fee_parameters, fill_order_operation_fee_parameters, account_create_operation_fee_parameters, account_update_operation_fee_parameters, account_whitelist_operation_fee_parameters, account_upgrade_operation_fee_parameters, account_transfer_operation_fee_parameters, asset_create_operation_fee_parameters, asset_update_operation_fee_parameters, asset_update_bitasset_operation_fee_parameters, asset_update_feed_producers_operation_fee_parameters, asset_issue_operation_fee_parameters, asset_reserve_operation_fee_parameters, asset_fund_fee_pool_operation_fee_parameters, asset_settle_operation_fee_parameters, asset_global_settle_operation_fee_parameters, asset_publish_feed_operation_fee_parameters, witness_create_operation_fee_parameters, witness_update_operation_fee_parameters, proposal_create_operation_fee_parameters, proposal_update_operation_fee_parameters, proposal_delete_operation_fee_parameters, withdraw_permission_create_operation_fee_parameters, withdraw_permission_update_operation_fee_parameters, withdraw_permission_claim_operation_fee_parameters, withdraw_permission_delete_operation_fee_parameters, committee_member_create_operation_fee_parameters, committee_member_update_operation_fee_parameters, committee_member_update_global_parameters_operation_fee_parameters, vesting_balance_create_operation_fee_parameters, vesting_balance_withdraw_operation_fee_parameters,
 // worker_create_operation_fee_parameters,
-custom_operation_fee_parameters, assert_operation_fee_parameters, balance_claim_operation_fee_parameters, override_transfer_operation_fee_parameters, transfer_to_blind_operation_fee_parameters, blind_transfer_operation_fee_parameters, transfer_from_blind_operation_fee_parameters, asset_settle_cancel_operation_fee_parameters, asset_claim_fees_operation_fee_parameters]);
+custom_operation_fee_parameters, assert_operation_fee_parameters, balance_claim_operation_fee_parameters, override_transfer_operation_fee_parameters, transfer_to_blind_operation_fee_parameters, blind_transfer_operation_fee_parameters, transfer_from_blind_operation_fee_parameters, asset_settle_cancel_operation_fee_parameters, asset_claim_fees_operation_fee_parameters, fba_distribute_operation_fee_parameters]);
 
 var fee_schedule = new Serializer("fee_schedule", { parameters: set(fee_parameters),
     scale: uint32 });
@@ -599,9 +599,51 @@ var asset_claim_fees = new Serializer("asset_claim_fees", { fee: asset,
     amount_to_claim: asset,
     extensions: set(future_extensions) });
 
-operation.st_operations = [transfer, limit_order_create, limit_order_cancel, call_order_update, fill_order, account_create, account_update, account_whitelist, account_upgrade, account_transfer, asset_create, asset_update, asset_update_bitasset, asset_update_feed_producers, asset_issue, asset_reserve, asset_fund_fee_pool, asset_settle, asset_global_settle, asset_publish_feed, witness_create, witness_update, proposal_create, proposal_update, proposal_delete, withdraw_permission_create, withdraw_permission_update, withdraw_permission_claim, withdraw_permission_delete, committee_member_create, committee_member_update, committee_member_update_global_parameters, vesting_balance_create, vesting_balance_withdraw,
+operation.st_operations = [transfer, //0
+limit_order_create, //1
+limit_order_cancel, //2
+call_order_update, //3
+fill_order, //4
+account_create, //5
+account_update, //6
+account_whitelist, //7
+account_upgrade, //8
+account_transfer, //9
+asset_create, //10
+asset_update, //11
+asset_update_bitasset, //12
+asset_update_feed_producers, //13
+asset_issue, //14
+asset_reserve, //15
+asset_fund_fee_pool, //16
+asset_settle, //17
+asset_global_settle, //18
+asset_publish_feed, //19
+witness_create, //20
+witness_update, //21
+proposal_create, //22
+proposal_update, //23
+proposal_delete, //24
+withdraw_permission_create, //25
+withdraw_permission_update, //26
+withdraw_permission_claim, //27
+withdraw_permission_delete, //28
+committee_member_create, //29
+committee_member_update, //30
+committee_member_update_global_parameters, //31
+vesting_balance_create, //32
+vesting_balance_withdraw, //33
 // worker_create,
-custom, assert, balance_claim, override_transfer, transfer_to_blind, blind_transfer, transfer_from_blind, asset_settle_cancel, asset_claim_fees];
+custom, //34
+assert, //35
+balance_claim, //36
+override_transfer, //37
+transfer_to_blind, //38
+blind_transfer, //39
+transfer_from_blind, //40
+asset_settle_cancel, //41
+asset_claim_fees //42
+];
 
 var transaction = new Serializer("transaction", { ref_block_num: uint16,
     ref_block_prefix: uint32,
