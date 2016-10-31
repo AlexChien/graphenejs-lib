@@ -599,6 +599,8 @@ var asset_claim_fees = new Serializer("asset_claim_fees", { fee: asset,
     amount_to_claim: asset,
     extensions: set(future_extensions) });
 
+fba_distribute_operation_fee_parameters = new Serializer("fba_distribute_operation_fee_parameters");
+
 operation.st_operations = [transfer, //0
 limit_order_create, //1
 limit_order_cancel, //2
