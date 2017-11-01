@@ -164,9 +164,10 @@ var asset_claim_fees_operation_fee_parameters = new Serializer("asset_claim_fees
 
 var fba_distribute_operation_fee_parameters = new Serializer("fba_distribute_operation_fee_parameters");
 
+var account_balance_migrate_operation_fee_parameters = new Serializer("account_balance_migrate_operation_fee_parameters", { fee: int64 });
 var fee_parameters = static_variant([transfer_operation_fee_parameters, limit_order_create_operation_fee_parameters, limit_order_cancel_operation_fee_parameters, call_order_update_operation_fee_parameters, fill_order_operation_fee_parameters, account_create_operation_fee_parameters, account_update_operation_fee_parameters, account_whitelist_operation_fee_parameters, account_upgrade_operation_fee_parameters, account_transfer_operation_fee_parameters, asset_create_operation_fee_parameters, asset_update_operation_fee_parameters, asset_update_bitasset_operation_fee_parameters, asset_update_feed_producers_operation_fee_parameters, asset_issue_operation_fee_parameters, asset_reserve_operation_fee_parameters, asset_fund_fee_pool_operation_fee_parameters, asset_settle_operation_fee_parameters, asset_global_settle_operation_fee_parameters, asset_publish_feed_operation_fee_parameters, witness_create_operation_fee_parameters, witness_update_operation_fee_parameters, proposal_create_operation_fee_parameters, proposal_update_operation_fee_parameters, proposal_delete_operation_fee_parameters, withdraw_permission_create_operation_fee_parameters, withdraw_permission_update_operation_fee_parameters, withdraw_permission_claim_operation_fee_parameters, withdraw_permission_delete_operation_fee_parameters, committee_member_create_operation_fee_parameters, committee_member_update_operation_fee_parameters, committee_member_update_global_parameters_operation_fee_parameters, vesting_balance_create_operation_fee_parameters, vesting_balance_withdraw_operation_fee_parameters,
 // worker_create_operation_fee_parameters,
-custom_operation_fee_parameters, assert_operation_fee_parameters, balance_claim_operation_fee_parameters, override_transfer_operation_fee_parameters, transfer_to_blind_operation_fee_parameters, blind_transfer_operation_fee_parameters, transfer_from_blind_operation_fee_parameters, asset_settle_cancel_operation_fee_parameters, asset_claim_fees_operation_fee_parameters, fba_distribute_operation_fee_parameters]);
+custom_operation_fee_parameters, assert_operation_fee_parameters, balance_claim_operation_fee_parameters, override_transfer_operation_fee_parameters, transfer_to_blind_operation_fee_parameters, blind_transfer_operation_fee_parameters, transfer_from_blind_operation_fee_parameters, asset_settle_cancel_operation_fee_parameters, asset_claim_fees_operation_fee_parameters, fba_distribute_operation_fee_parameters, account_balance_migrate_operation_fee_parameters]);
 
 var fee_schedule = new Serializer("fee_schedule", { parameters: set(fee_parameters),
     scale: uint32 });
@@ -601,6 +602,16 @@ var asset_claim_fees = new Serializer("asset_claim_fees", { fee: asset,
     amount_to_claim: asset,
     extensions: set(future_extensions) });
 
+var fba_distribute = new Serializer("fba_distribute", { fee: asset,
+    account_id: protocol_id_type("account"),
+    fba_id: protocol_id_type("fba_accumulator"),
+    amount: int64 });
+
+var account_balance_migrate = new Serializer("account_balance_migrate", { fee: asset,
+    account: protocol_id_type("account"),
+    eth_address: string,
+    extensions: set(future_extensions) });
+
 operation.st_operations = [transfer, //0
 limit_order_create, //1
 limit_order_cancel, //2
@@ -644,7 +655,9 @@ transfer_to_blind, //38
 blind_transfer, //39
 transfer_from_blind, //40
 asset_settle_cancel, //41
-asset_claim_fees //42
+asset_claim_fees, //42
+fba_distribute, //43
+account_balance_migrate //44
 ];
 
 var transaction = new Serializer("transaction", { ref_block_num: uint16,

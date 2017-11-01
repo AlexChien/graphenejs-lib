@@ -41,7 +41,11 @@ ChainTypes.impl_object_type = {
   blinded_balance: 10,
   chain_property: 11,
   witness_schedule: 12,
-  budget_record: 13
+  budget_record: 13,
+  special_authority: 14,
+  buyback: 15,
+  fba_accumulator: 16,
+  account_balance_migrate: 17
 };
 
 ChainTypes.vote_type = {
@@ -98,7 +102,8 @@ ChainTypes.operations = {
   asset_claim_fees: 42,
 
   // add fba
-  fba_distribute: 43
+  fba_distribute: 43,
+  account_balance_migrate: 44
 };
 
 module.exports = ChainTypes;
